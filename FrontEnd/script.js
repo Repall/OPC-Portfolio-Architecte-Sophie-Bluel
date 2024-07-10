@@ -1,60 +1,89 @@
-function getWorks() {
-    const works = fetch("http://localhost:5678/api/works")
-    .then(works => works.json())
-    .then(works => {
-        const gallery = document.querySelector(".gallery")
+const buttonsContainer = document.querySelector("#portfolio .btn")
+const worksGallery = document.querySelector("#portfolio .gallery")
 
-        for (let i = 0; i < works.length; i++) {
-            
-            const galleryPost = document.createElement("figure")
-            gallery.appendChild(galleryPost)
-        
-            const galleryImage = document.createElement("img")
-            galleryImage.src = works[i].imageUrl
-            galleryPost.appendChild(galleryImage)
-        
-            const galleryTitle = document.createElement("figcaption")
-            galleryTitle.innerText = works[i].title
-            galleryPost.appendChild(galleryTitle)
-        }
-    })
+async function fetchWorks() {
+    try {
+        const response = await fetch("http://localhost:5678/api/works")
+        const works = await response.json()
+        console.log("WORKS OK")
+        return works
+    } catch (error) {
+        console.error("Erreur lors de la récupération des projets :", error)
+    }  
 }
+async function fetchCategories() {
+    try {
+        const response = await fetch("http://localhost:5678/api/categories")
+        const categories = await response.json()
+        console.log("CATEGORIES OK")
+        return categories
+    } catch (error) {
+        console.error('Erreur lors de la récupération des catégories :', error)
+        return []
+    }
+};
 
-function getCategories() {
-    const categories = fetch("http://localhost:5678/api/categories")
-    .then(categories => categories.json())
-    .then(categories => {
+function displayWorks(works) {
+    worksGallery.innerHTML = "" // Vider le conteneur
 
-        const button = document.querySelector(".btn")
-        const buttonCategeories = document.createElement("button")
-        buttonCategeories.innerText = "Tous"
-        buttonCategeories.id = "buttonFilter0"
-        button.appendChild(buttonCategeories)
-        buttonCategeories.classList.add("btnSelect")
-        buttonMain = buttonCategeories
-        // return buttonMain
-
-        for (let i = 0; i < categories.length; i++) {
-            const buttonCategeories = document.createElement("button")
-            buttonCategeories.innerText = categories[i].name
-            buttonCategeories.id = "buttonFilter" + [i+1]
-            button.appendChild(buttonCategeories)
-        }
-    })
-}
+    works.forEach(project => {
+        const projectElement = document.createElement("figure")
 
 
+        const projectTitle = document.createElement("figcaption")
+        projectTitle.textContent = project.title
 
-getCategories()
-getWorks()
+        const projectImage = document.createElement("img")
+        projectImage.src = project.imageUrl
+        projectImage.alt = project.title
 
-// function filterCategories() {
-//     console.log("Bouton OK")
-// }
+        projectElement.appendChild(projectTitle)
+        projectElement.appendChild(projectImage)
+        worksGallery.appendChild(projectElement)
+    });
+};
+function filterWorks(works, category) {
+    if (category === "all") {
+        return works
+    }
+    return works.filter(project => project.categoryId === category)
+};
+// Fonction pour créer les boutons de filtre
+function createFilterButtons(categories) {
+    buttonsContainer.innerHTML = "" // Vider le conteneur de boutons
 
-// const buttonFilter = document.getElementById("buttonFilter0")
-// const test = document.querySelectorAll(".btn button")
-// console.log(test)
+    // Créer un bouton "Tous"
+    const allButton = document.createElement("button")
+    allButton.textContent = "Tous"
+    allButton.addEventListener("click", () => clickFilterButtons("all", allButton))
+    buttonsContainer.appendChild(allButton)
+    allButton.classList.add("btnSelect")
 
-// test.addEventListener("click", filterCategories)
+    // Créer des boutons pour chaque catégorie
+    categories.forEach(category => {
+        const categoryButton = document.createElement("button")
+        categoryButton.textContent = category.name
+        categoryButton.addEventListener("click", () => clickFilterButtons(category.id, categoryButton))
+        buttonsContainer.appendChild(categoryButton)
+    });
+};
 
+// Gestion des clics sur les boutons
+async function clickFilterButtons(category, clickButton) {
+    const buttons = buttonsContainer.querySelectorAll("button")
+    buttons.forEach(button => button.classList.remove("btnSelect"))
+    clickButton.classList.add("btnSelect")
+
+    const works = await fetchWorks()
+    const filteredWorks = filterWorks(works, category)
+    displayWorks(filteredWorks)
+};
+
+// Initialiser la page
+async function initializePage() {
+    const categories = await fetchCategories()
+    createFilterButtons(categories)
+    clickFilterButtons("all", buttonsContainer.querySelector("button"))
+};
+
+initializePage();
