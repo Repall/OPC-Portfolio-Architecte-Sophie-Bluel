@@ -234,3 +234,217 @@ footer nav ul {
 	margin: 2em
 }
 
+
+
+/*************** MODAL ***************/
+.modal {
+	padding: 3em;
+	border: none;
+	border-radius: 10px;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+/*************** MODAL DELETE ***************/
+#modalSettingDelete {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 630px;
+	gap: 4em;
+}
+
+#modalSettingDelete .modalTitre {
+	color: #000;
+	text-align: center;
+	font-family: "Work Sans";
+	font-size: 26px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	font-weight: bold;
+}
+
+#modalSettingDelete div {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 30px 10px;
+	
+}
+
+#modalSettingDelete img {
+	width: 78px;
+}
+
+#modalSettingDelete article {
+	position: relative;
+}
+
+#modalSettingDelete .fa-trash-can {
+	cursor: pointer;
+	position: absolute;
+	text-align: center;
+	padding-top: 4px;
+	top: 7px;
+	right: 7px;
+	color: white;
+	background-color: black;
+	width: 20px;
+	height: 20px;
+}
+
+
+/*************** MODAL ADD ***************/
+#modalSettingAdd {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 630px;
+	gap: 4em;
+}
+
+#modalSettingAdd .modalTitre {
+	color: #000;
+	text-align: center;
+	font-family: "Work Sans";
+	font-size: 26px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	font-weight: bold;
+}
+
+#modalSettingAdd .addImgModal {
+	padding: 2em;
+	width: 420px;
+	/* height: 169px; */
+	background-color: #E8F1F6;
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1em;
+	position: relative;
+
+}
+
+.addImgModal .fa-image {
+	color: #B9C5CC;
+	font-size: 80px;
+}
+
+.addImgModal button {
+	color: #306685;
+	background-color: #B9C5CC;
+	position: relative;
+	border: none;
+	padding: 0 2em;
+}
+
+
+
+
+
+
+
+
+
+
+
+#imgPreviewDiv {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0; /
+}
+
+#imgPreview {
+    max-width: 100%; 
+    max-height: 100%; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.addImgModal input {
+	z-index: 1;
+	opacity: 0;
+	position: absolute;
+}
+
+#modalSettingAdd form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#modalSettingAdd input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	/* cursor: pointer; */
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#modalSettingAdd select {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	/* cursor: pointer; */
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#modalSettingAdd label {
+	margin: 2em 0 1em 0;
+}
+
+
+.fa-x {
+	font-size: 20px;
+	font-weight: bold;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	cursor: pointer;
+}
+
+.fa-arrow-left {
+	font-size: 20px;
+	font-weight: bold;
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	cursor: pointer;
+}
+
+.btnModal {
+	width: 237px;
+	border: none;
+	color: white;
+	background-color: var(--bg-color);
+	border-color: var(--bg-color);
+}

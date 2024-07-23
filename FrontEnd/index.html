@@ -17,15 +17,55 @@
         />
         <link rel="stylesheet" href="./assets/style.css" />
         <link rel="stylesheet" href="./assets/login.css" />
-		<!-- <script> scr="./script.js" </script> -->
+
     </head>
     <body>
-        <div id="edit-bar" class= "edit-bar hidden">
+        <dialog class="modal" id="modalDelete">
+            <div id="modalSettingDelete">
+                <p class="modalTitre">Galerie photo</p>
+                <i id="closeModalDelete" class="fa-solid fa-x"></i>
+                <div id="listWorks"></div>
+                <s> </s>
+                <button id="openModalAdd" class="btnModal">Ajouter une photo</button>
+            </div>
+        </dialog>
+        <dialog class="modal" id="modalAdd">
+            <div id="modalSettingAdd">
+                <i id="returnModal" class="fa-solid fa-arrow-left"></i>
+                <p class="modalTitre">Ajout photo</p>
+                <i id="closeModalAdd" class="fa-solid fa-x"></i>
+                <form action="">
+                    <div class="addImgModal">
+                        <i class="fa-regular fa-image"></i>
+                        <button class="btnAddImgWorks">
+                            <input type="file" name="image" id="image" accept=".jpg, .png"/>
+                            + Ajouter photo
+                        </button>
+                        <p>jpg. png : 4mo max</p>
+                        <div id="imgPreviewDiv">
+                            <img id="imgPreview" src="" alt="Aperçu de l'image" />
+                        </div>
+                    </div>
+                    <label for="title">Titre</label>
+                    <input type="text" name="title" id="title" required="required"/>
+                    <label for="password">Catégorie</label>
+                    <select name="category" id="category" required>
+                        <option value=""></option>
+                        <option value="1">Objets</option>
+                        <option value="2">Appartement</option>
+                        <option value="3">Hôtels & Restaurant</option>
+                    </select>
+                </form>
+                <s> </s>
+                <button id="btnSubmit" type="button" class="btnModal">Ajouter une photo</button>
+            </div>
+        </dialog>
+
+        <div id="edit-bar" class="edit-bar hidden">
             <i id="edit-mod" class="fa-regular fa-pen-to-square"></i>
             <p>Mode édition</p>
         </div>
         <header>
-            
             <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
             <nav>
                 <ul>
@@ -43,11 +83,13 @@
                 </figure>
                 <article>
                     <h2>Designer d'espace</h2>
-                    <p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
                     <p>
-                        Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de
-                        l'esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du
-                        planning et du budget.
+                        Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.
+                    </p>
+                    <p>
+                        Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le
+                        respect de l'esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail,
+                        le respect du planning et du budget.
                     </p>
                     <p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
                 </article>
@@ -60,7 +102,7 @@
                         <p>modifier</p>
                     </div>
                 </div>
-				<div class="btn"></div>
+                <div class="btn"></div>
                 <div class="gallery"></div>
             </section>
             <section id="contact">
@@ -85,7 +127,7 @@
                 </ul>
             </nav>
         </footer>
-		<script src="./works.js" defer></script>
+        <script src="./works.js" defer></script>
         <script src="./edit.js" defer></script>
     </body>
 </html>
