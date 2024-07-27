@@ -13,7 +13,7 @@ function editMod() {
     navLogout.classList.toggle("hidden")
     
 
-    // window.localStorage.removeItem("token");
+    // window.localStorage.removeItem("token")
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -173,42 +173,39 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
-    const form = document.getElementById('myForm');
-        const imageInput = document.getElementById('image');
-        const titleInput = document.getElementById('title');
-        const categorySelect = document.getElementById('category');
-        const submitButton = document.getElementById('btnSubmit');
-        const imgPreview = document.getElementById('imgPreview');
-        const imgPreviewDiv = document.getElementById('imgPreviewDiv');
+    const imageInput = document.getElementById("image")
+    const titleInput = document.getElementById("title")
+    const categorySelect = document.getElementById("category")
+    const imgPreview = document.getElementById("imgPreview")
 
-        function validateForm() {
-            if (imageInput.files.length > 0 && titleInput.value.trim() !== '' && categorySelect.value !== '') {
-                submitButton.disabled = false;
-                submitButton.classList.add('active');
-            } else {
-                submitButton.disabled = true;
-                submitButton.classList.remove('active');
-            }
+    function validateForm() {
+        if (imageInput.files.length > 0 && titleInput.value.trim() !== "" && categorySelect.value !== "") {
+            btnSubmit.disabled = false
+            btnSubmit.classList.add("active")
+        } else {
+            btnSubmit.disabled = true;
+            btnSubmit.classList.remove("active")
         }
+    }
 
-        imageInput.addEventListener('change', function() {
-            if (imageInput.files.length > 0) {
-                const file = imageInput.files[0];
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imgPreview.src = e.target.result;
-                    imgPreview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                imgPreview.src = '';
-                imgPreview.style.display = 'none';
-            }
-            validateForm();
-        });
+    imageInput.addEventListener("change", function() {
+        if (imageInput.files.length > 0) {
+            const file = imageInput.files[0]
+            const reader = new FileReader()
+            reader.onload = function(e) {
+                imgPreview.src = e.target.result
+                imgPreview.style.display = "block"
+            };
+            reader.readAsDataURL(file)
+        } else {
+            imgPreview.src = ""
+            imgPreview.style.display = "none"
+        }
+        validateForm()
+    })
 
-        titleInput.addEventListener('input', validateForm);
-        categorySelect.addEventListener('change', validateForm);
+    titleInput.addEventListener("input", validateForm);
+    categorySelect.addEventListener("change", validateForm);
 
     // AFFICHER LES PROJETS AU CHARGEMENT DE LA PAGE
     listWorksModal()
@@ -245,19 +242,24 @@ window.addEventListener("click", () => {
         openCheck(modalDelete);
         body.classList.remove("backgroundModal")
     }
-});
+})
 cancelButton.addEventListener("click", () => {
     modalDelete.close();
     openCheck(modalDelete);
     body.classList.remove("backgroundModal")
-});
+})
 cancelButton2.addEventListener("click", () => {
     modalAdd.close();
     openCheck(modalDelete);
     body.classList.remove("backgroundModal")
-});
+})
 
 
-
-modOff.addEventListener("click", editMod);
-navLogout.addEventListener("click", editMod)
+modOff.addEventListener("click", () => {
+    editMod()
+    window.localStorage.removeItem("token")
+})
+navLogout.addEventListener("click", () => {
+    editMod()
+    window.localStorage.removeItem("token")
+})
