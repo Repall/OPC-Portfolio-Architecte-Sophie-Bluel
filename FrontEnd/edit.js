@@ -1,12 +1,19 @@
 const modOff = document.getElementById("edit-bar");
 const modifyWorks = document.getElementById("edit");
 const modalAddWorks = document.getElementById("openModalAdd")
+const navLogin = document.getElementById("navLogin")
+const navLogout = document.getElementById("navLogout")
+const body = document.getElementById("body")
+const btnSubmit = document.getElementById("btnSubmit")
 
 function editMod() {
-    modifyWorks.classList.toggle("hidden");
-    modOff.classList.toggle("hidden");
+    modifyWorks.classList.toggle("hidden")
+    modOff.classList.toggle("hidden")
+    navLogin.classList.toggle("hidden")
+    navLogout.classList.toggle("hidden")
+    
 
-    window.localStorage.removeItem("token");
+    // window.localStorage.removeItem("token");
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -98,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // AJOUTER UN PROJET
-    document.getElementById("btnSubmit").addEventListener("click", async () => {
+    btnSubmit.addEventListener("click", async () => {
         const title = document.getElementById("title").value
         const category = document.getElementById("category").value
         const imageInput = document.getElementById("image")
@@ -166,6 +173,43 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
+    const form = document.getElementById('myForm');
+        const imageInput = document.getElementById('image');
+        const titleInput = document.getElementById('title');
+        const categorySelect = document.getElementById('category');
+        const submitButton = document.getElementById('btnSubmit');
+        const imgPreview = document.getElementById('imgPreview');
+        const imgPreviewDiv = document.getElementById('imgPreviewDiv');
+
+        function validateForm() {
+            if (imageInput.files.length > 0 && titleInput.value.trim() !== '' && categorySelect.value !== '') {
+                submitButton.disabled = false;
+                submitButton.classList.add('active');
+            } else {
+                submitButton.disabled = true;
+                submitButton.classList.remove('active');
+            }
+        }
+
+        imageInput.addEventListener('change', function() {
+            if (imageInput.files.length > 0) {
+                const file = imageInput.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imgPreview.src = e.target.result;
+                    imgPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imgPreview.src = '';
+                imgPreview.style.display = 'none';
+            }
+            validateForm();
+        });
+
+        titleInput.addEventListener('input', validateForm);
+        categorySelect.addEventListener('change', validateForm);
+
     // AFFICHER LES PROJETS AU CHARGEMENT DE LA PAGE
     listWorksModal()
 })
@@ -176,6 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
 modifyWorks.addEventListener("click", () => {
     modalDelete.showModal();
     openCheck(modalDelete);
+    body.classList.add("backgroundModal");
 });
 
 
@@ -194,20 +239,25 @@ returnButton.addEventListener("click", () => {
 
 // FERMETURE DE LA MODAL
 window.addEventListener("click", () => {
-    if (event.target === modalDelete) {
+    if (event.target === modalDelete || event.target === modalAdd) {
         modalDelete.close();
+        modalAdd.close();
         openCheck(modalDelete);
+        body.classList.remove("backgroundModal")
     }
 });
 cancelButton.addEventListener("click", () => {
     modalDelete.close();
     openCheck(modalDelete);
+    body.classList.remove("backgroundModal")
 });
 cancelButton2.addEventListener("click", () => {
     modalAdd.close();
     openCheck(modalDelete);
+    body.classList.remove("backgroundModal")
 });
 
 
 
 modOff.addEventListener("click", editMod);
+navLogout.addEventListener("click", editMod)

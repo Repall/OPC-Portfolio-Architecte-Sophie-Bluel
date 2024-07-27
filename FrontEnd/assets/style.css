@@ -241,7 +241,14 @@ footer nav ul {
 	padding: 3em;
 	border: none;
 	border-radius: 10px;
-	background-color: rgba(0, 0, 0, 0.7);
+	/* background-color: rgb(255, 255, 255); */
+	/* z-index: 10; */
+	/* opacity: 1; */
+}
+
+.backgroundModal {
+	opacity: 0.5;
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
 /*************** MODAL DELETE ***************/
@@ -328,6 +335,19 @@ footer nav ul {
 	gap: 1em;
 	position: relative;
 
+}
+
+#modalSettingAdd .btnModal {
+	margin-top: 20px;
+	padding: 10px 20px;
+	background-color: grey;
+	color: white;
+	border: none;
+	cursor: not-allowed;
+}
+#modalSettingAdd .btnModal.active {
+	background-color: var(--bg-color);
+	cursor: pointer;
 }
 
 .addImgModal .fa-image {

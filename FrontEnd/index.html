@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="./assets/login.css" />
 
     </head>
-    <body>
+    <body id="body" class="">
         <dialog class="modal" id="modalDelete">
             <div id="modalSettingDelete">
                 <p class="modalTitre">Galerie photo</p>
@@ -43,7 +43,7 @@
                         </button>
                         <p>jpg. png : 4mo max</p>
                         <div id="imgPreviewDiv">
-                            <img id="imgPreview" src="" alt="Aperçu de l'image" />
+                            <img id="imgPreview" src=""  />
                         </div>
                     </div>
                     <label for="title">Titre</label>
@@ -57,7 +57,7 @@
                     </select>
                 </form>
                 <s> </s>
-                <button id="btnSubmit" type="button" class="btnModal">Ajouter une photo</button>
+                <button id="btnSubmit" type="button" class="btnModal">Valider</button>
             </div>
         </dialog>
 
@@ -71,7 +71,8 @@
                 <ul>
                     <li class="gras">projets</li>
                     <li>contact</li>
-                    <li><a href="login.html">login</a></li>
+                    <li id="navLogin"><a href="login.html">login</a></li>
+                    <li id="navLogout" class="hidden">logout</li>
                     <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
                 </ul>
             </nav>
