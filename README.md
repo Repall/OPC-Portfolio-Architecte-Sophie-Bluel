@@ -1,8 +1,20 @@
-# Portfolio-architecte-sophie-bluel
+# Formation Développeur d'application - JavaScript 
 
-Code du projet 6 d'intégrateur web.
+## Projet 5 : Portfolio Architecte Sophie Bluel - Créez une page web dynamique avec JavaScript
 
-## Information pour le lancer le code
+## Technologies :
 
- - Lancer le backend depuis votre terminal en suivant les instruction du fichier ReadMe.
- - Si vous désirez afficher le code du backend et du frontend, faites le dans 2 instances de VSCode différentes pour éviter tout problème
+- HTML
+- CSS
+- JavaSript
+- Backend
+
+## Voir le projet : 
+
+Impossible de présenter le projet car il fonctionne avec un Backend. (Image à venir)
+
+## Tester le projet :
+
+```terminal
+git clone https://github.com/Repall/OPC-Portfolio-Architecte-Sophie-Bluel
+```
